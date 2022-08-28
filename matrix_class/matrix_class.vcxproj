@@ -128,10 +128,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="matricecarree.cpp" />
     <ClCompile Include="matrix.cpp" />
     <ClCompile Include="utils_vecteur_matrice.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="matricecarree.hpp" />
     <ClInclude Include="matrix.hpp" />
     <ClInclude Include="utils_vecteur_matrice.hpp" />
   </ItemGroup>

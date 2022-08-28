@@ -1,12 +1,12 @@
 #include"matrix.hpp"
-//#include"matcarree.hpp"
+#include"matricecarree.hpp"
 
 
 
 int main()
 {
 
-	matrice test(4,4);
+	matricecarree test(4);
 
 	std::vector<double> v1 = { 1,1,1,1 };
 	std::vector<double> v2 = { 1,5,5,5 };
@@ -21,13 +21,10 @@ int main()
 	test.set_coefficient(3, v4);
 
 
-   
 
-	test.ecrire_matrice("matrice2.txt"); 
-	auto z = lire_matrice("matrice.txt");
+	std::cout << test << std::endl;
+	std::cout << test.chol() << std::endl;
 
-	std::cout << z << std::endl;
-    
 
 
 	return 0;
