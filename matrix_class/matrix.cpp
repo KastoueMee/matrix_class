@@ -159,22 +159,22 @@ MANIPULATION DE LA MATRICE
 ******************************************************/
 
 //Change l'element (i,j) par x.
-matrice matrice::set_coefficient(int const& i, int const& j, double const& x)
+bool matrice::set_coefficient(int const& i, int const& j, double const& x)
 {
     assert(i < size1 && j < size2);
     matrix[i][j] = x;
-    return *this;
+    return true;
 }
 
 //Change la ligne i par le vecteur x.
-matrice matrice::set_coefficient(int const& i, std::vector < double >const& x)
+bool matrice::set_coefficient(int const& i, std::vector < double >const& x)
 {
     assert(std::size(x) == size2 && i < size1);
     for (int j = 0; j < std::size(x); ++j)
     {
         matrix[i][j] = x[j];
     }
-    return *this;
+    return true;
 }
 
 //Return the j-th column
@@ -299,70 +299,38 @@ std::ostream& operator<< (std::ostream& os, const matrice& m)
 matrice lire_matrice(std::string const& nom_fichier)
 {
     std::ifstream fichier{ nom_fichier };
-    std::string phrase{ " " };
+    std::string phrase, mot;
+    int ligne, colonne, i, j;
 
     //Récupère la ligne du fichier
     std::getline(fichier, phrase);
-    auto pointeur = std::begin(phrase);
-    int ligne = 0;
-    int colonne = 0;
 
-    std::string nombre_str;
+    //Transforme la ligne en stringstream
+    std::stringstream s(phrase);
 
-    while (ligne == 0)
-    {
-        if (*pointeur == ',')
-        {
-            ligne = (std::stoi(nombre_str));
-            nombre_str = "";
-        }
-        else
-        {
-            nombre_str += *pointeur;
-        }
-        pointeur += 1;
-    }
+    //Recupere size1 dans mot
+    std::getline(s, mot, ',');
+    ligne = (std::stoi(mot));
 
-    while (colonne == 0)
-    {
-        if (*pointeur == ',')
-        {
-            colonne = (std::stoi(nombre_str));
-            nombre_str = "";
-        }
-        else
-        {
-            nombre_str += *pointeur;
-        }
-        pointeur += 1;
-    }
+    //Recupere size2
+    std::getline(s, mot, ',');
+    colonne = (std::stoi(mot));
 
     matrice lire(ligne, colonne);
-    for (int i = 0; i < ligne; ++i)
+    i = 0;
+    j = 0;
+    while (std::getline(s, mot, ','))
     {
-        for (int j = 0; j < colonne; ++j)
-        {
-            if (i == ligne - 1 && j == colonne - 1)
-            {
-                for (auto it = pointeur; it != std::end(phrase); ++it)
-                {
-                    nombre_str += *it;
-                }
-                lire.set_coefficient(i, j, std::stod(nombre_str));
-                return lire;
-            }
-            else
-            {
-                while (*pointeur != ',')
-                {
-                    nombre_str += *pointeur;
-                    ++pointeur;
-                }
-                lire.set_coefficient(i, j, std::stod(nombre_str));
-                nombre_str = "";
-                ++pointeur;
-            }
+        lire.set_coefficient(i, j, std::stod(mot));
 
+        if (j != colonne - 1)
+        {
+            ++j;
+        }
+        else
+        {
+            j = 0;
+            ++i;
         }
     }
     return lire;

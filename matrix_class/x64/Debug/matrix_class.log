@@ -1,2 +1,4 @@
-﻿  main.cpp
+﻿  tp2.cpp
+C:\Users\theop\source\repos\matrix_class\matrix_class\tp2.cpp(226,10): warning C4244: '=' : conversion de 'double' en 'int', perte possible de données
+C:\Users\theop\source\repos\matrix_class\matrix_class\tp2.cpp(89): warning C4715: 'fonction_1' : les chemins de contrôle ne retournent pas tous une valeur
   matrix_class.vcxproj -> C:\Users\theop\source\repos\matrix_class\x64\Debug\matrix_class.exe

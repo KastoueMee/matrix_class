@@ -3,6 +3,7 @@
 
 #include"utils_vecteur_matrice.hpp"
 #include<cassert>
+#include <sstream>
 
 class matrice {
 
@@ -24,8 +25,8 @@ public:
 	matrice operator*(const double&);
 	std::vector<double> operator*(const std::vector<double>&);
 
-	matrice set_coefficient(int const& i, int const& j, double const& x);
-	matrice set_coefficient(int const& i, std::vector<double> const& x);
+	bool set_coefficient(int const& i, int const& j, double const& x);
+	bool set_coefficient(int const& i, std::vector<double> const& x);
 	std::vector<double> colonne(int const& j);
 
 	int dim1() { return size1; }
